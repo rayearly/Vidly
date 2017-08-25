@@ -13,12 +13,8 @@ namespace Vidly
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            // Define the most detailed route first and go to the generic one.
-            routes.MapRoute(
-                "MoviesByReleaseDate",
-                "movies/released/{year}/{month}",
-                new { controller = "Movies", action = "ByReleaseDate" },
-                new { year = @"\d{4}", month = @"\d{2}" });
+            // Activate Attribute Routing - Cleaner way of doing routing instead of defining it one by one here.
+            routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
                 name: "Default",

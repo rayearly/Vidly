@@ -16,6 +16,9 @@ namespace Vidly.Controllers
             return View(movie);
         }
 
+        // Activate the Attribute Routing in RouteConfig and define the routing with the constraint (min, max, minlength, maxlength, int, float, guid, range) here.
+        // Google ASP.NET MVC Attribute Route Constraint for details.
+        [Route("movies/released/{year}/{month:regex(\\d{4}):range(1,12)}")]
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year + "/" + month);
