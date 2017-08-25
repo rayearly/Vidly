@@ -13,7 +13,14 @@ namespace Vidly.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() {Name = "Shrek!"};
-            return View(movie);
+
+            // Assign data to viewdata
+            ViewData["Movie"] = movie;
+
+            // Assign data to viewbag
+            ViewBag.RandomMovie = movie;
+
+            return View();
         }
 
         // Activate the Attribute Routing in RouteConfig and define the routing with the constraint (min, max, minlength, maxlength, int, float, guid, range) here.
