@@ -1,8 +1,33 @@
-﻿@model Vidly.ViewModels.RandomMovieViewModel
+﻿@using System.Activities.Statements
+@model Vidly.ViewModels.RandomMovieViewModel
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*
+    Render the classes dynamically and can be used to any attribute.
+    You can customize what is the class for certain output here by the code below. 
+    If the count is > 5 the class will be set as 5.
+    The class can have bigger font or colorful depend on what you want. 
+    If it is not popular then, it is set to null which is not assign to any class and not rendered in the final html
+*@
 
+@{
+    var className = Model.Customers.Count > 5 ? "popular" : null;
+}
 <h2>@Model.Movie.Name</h2>
-@Model.Customers
+
+@if (Model.Customers.Count == 0)
+{
+    <text>No one has rented this movie before.</text>
+    <p>This is true</p>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
