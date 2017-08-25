@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -13,14 +15,19 @@ namespace Vidly.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() {Name = "Shrek!"};
+            var customers = new List<Customer>
+            {
+                new Customer {Name = "Customer 1"},
+                new Customer {Name = "Customer 2"}
+            };
 
-            // Assign data to viewdata
-            ViewData["Movie"] = movie;
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
 
-            // Assign data to viewbag
-            ViewBag.RandomMovie = movie;
-
-            return View();
+            return View(viewModel);
         }
 
         // Activate the Attribute Routing in RouteConfig and define the routing with the constraint (min, max, minlength, maxlength, int, float, guid, range) here.

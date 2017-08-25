@@ -1,13 +1,8 @@
-﻿@using Vidly.Models
-@model Vidly.Models.Movie
+﻿@model Vidly.ViewModels.RandomMovieViewModel
 @{
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
-<!--Using ViewData we need to cast the ViewData first to get the attribute Name, and need to make changes on the Data name in here following the controller manually-->
-@( ((Movie) ViewData["Movie"]).Name )
-
-<!--Using ViewBag also assigning the data in a bag defined in the Controller and changes there means changes here.-->
-@ViewBag.RandomMovie
+<h2>@Model.Movie.Name</h2>
+@Model.Customers
