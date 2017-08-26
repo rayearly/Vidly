@@ -1,0 +1,31 @@
+﻿<!--Since we are taking the data from list IEnumerable, then we need to take the model as IEnumerable to read it as list.-->
+@model IEnumerable<Vidly.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--Checking the Model by Any method-->
+@if (!Model.Any())
+{
+    <p>No movies listed yet!</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Movies</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@movie.Name</td>    
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+}
+

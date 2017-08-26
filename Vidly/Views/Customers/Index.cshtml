@@ -1,0 +1,30 @@
+﻿<!--Using IEnumerable since the customer is in the list. This is the way of implementing this-->
+@model IEnumerable<Vidly.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--Checking whether there is any customer or not based on the model.-->
+@if (!Model.Any())
+{
+    <p>There is no customers registered yet!</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Customers</th>           
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <!--Creating a link redirecting to page Details with Id given in the customer details in the controller-->
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new {id = customer.Id}, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
