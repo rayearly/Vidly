@@ -9,31 +9,38 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
-        // GET: Customers
+        // Need dbcontext to access the database
+        private ApplicationDbContext _context;
+
+        // Initialize dbcontext here in constructor - ctor tab
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        // dbcontext is a disposable object - here is the way
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         public ViewResult Index()
         {
-            var customers = GetCustomers();
+            // Get Customers in database, but queried in View (here using razor syntax)
+            var customers = _context.Customers;
 
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            // Query is immediately executed by singleordefault here.
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
 
             return View(customer);
-        }
-
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer {Id = 1, Name = "John Smith"},
-                new Customer {Id = 2, Name = "Mary Williams"}
-            };
         }
     }
 }
