@@ -9,5 +9,12 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsSubscribedToNewsletter { get; set; }
+        
+        // Navigation Property - Customer to MembershipType
+        public MembershipType MembershipType { get; set; }
+
+        // Foreign Key for MembershipType table - EF recognized this convention and treat it as FK
+        public byte MembershipTypeId { get; set; }
     }
 }
