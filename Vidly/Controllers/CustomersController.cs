@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -26,8 +27,13 @@ namespace Vidly.Controllers
 
         public ViewResult Index()
         {
-            // Get Customers in database, but queried in View (here using razor syntax)
-            var customers = _context.Customers;
+            /* 
+               - Get Customers in database, but queried in View (here using razor syntax)
+               - .Include(c => c.MembershipType) is to enable the eager loading. Include the related object.
+               - To use, import System.Data.Entity
+               - Eager loading - loading Customer object together with its related object MembershipType
+            */
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }

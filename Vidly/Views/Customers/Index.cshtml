@@ -14,15 +14,19 @@ else
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th>Customers</th>           
+            <th>Customers</th>
+            <th>Membership Type</th>
         </tr>
         </thead>
         <tbody>
             @foreach (var customer in Model)
             {
-                <tr>
+                <tr>    
                     <!--Creating a link redirecting to page Details with Id given in the customer details in the controller-->
                     <td>@Html.ActionLink(customer.Name, "Details", "Customers", new {id = customer.Id}, null)</td>
+                    <!--Eager Loading in CustomerController to include MembershipType object together. Adding % just like that as razor is good
+                        enough to understand it is just a text-->
+                    <td>@customer.MembershipType.Name</td>
                 </tr>
             }
         </tbody>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,6 +19,9 @@ namespace Vidly.Models
 
         // Uses byte because it is in percentage 0% - 100% in range
         public byte DiscountRate { get; set; }
+
+        [StringLength(255)]
+        public string Name { get; set; }
 
     }
 }
