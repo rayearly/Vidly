@@ -14,7 +14,7 @@ namespace Vidly.Models
         // Navigation Property - Customer to MembershipType
         public MembershipType MembershipType { get; set; }
 
-        // Foreign Key for MembershipType table - EF recognized this convention and treat it as FK
+        // Foreign Key for MembershipType table - EF recognized this (MembershipType and MembershipTypeId) convention and treat it as FK
         public byte MembershipTypeId { get; set; }
     }
 }
