@@ -22,5 +22,8 @@ namespace Vidly.Models
 
         // Foreign Key for MembershipType table - EF recognized this (MembershipType and MembershipTypeId) convention and treat it as FK
         public byte MembershipTypeId { get; set; }
+
+        // Nullable DateTime is using ?
+        public DateTime? BirthDate { get; set; }
     }
 }

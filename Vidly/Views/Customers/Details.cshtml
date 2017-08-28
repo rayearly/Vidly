@@ -6,3 +6,12 @@
 
 <h2>@Model.Name</h2>
 
+<ul>
+    <li>Membership Type: @Model.MembershipType.Name</li>
+    <!--Check whether the Birthdate has value or not (DateTime Datatype): OPTIONAL-->
+    @if (Model.BirthDate.HasValue)
+    {
+        <!--Display the date only, without the time.-->
+        <li>Birthdate: @Model.BirthDate.Value.ToShortDateString()</li>
+    }
+</ul>
