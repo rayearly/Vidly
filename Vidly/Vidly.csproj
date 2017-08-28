@@ -196,9 +196,9 @@
     <Compile Include="Migrations\201708271459419_AddBirthDateToCustomer1.Designer.cs">
       <DependentUpon>201708271459419_AddBirthDateToCustomer1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708280003150_BirthDateNullable.cs" />
-    <Compile Include="Migrations\201708280003150_BirthDateNullable.Designer.cs">
-      <DependentUpon>201708280003150_BirthDateNullable.cs</DependentUpon>
+    <Compile Include="Migrations\201708280019414_AddOtherDetailsInMovies.cs" />
+    <Compile Include="Migrations\201708280019414_AddOtherDetailsInMovies.Designer.cs">
+      <DependentUpon>201708280019414_AddOtherDetailsInMovies.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -294,8 +294,8 @@
     <EmbeddedResource Include="Migrations\201708271459419_AddBirthDateToCustomer1.resx">
       <DependentUpon>201708271459419_AddBirthDateToCustomer1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708280003150_BirthDateNullable.resx">
-      <DependentUpon>201708280003150_BirthDateNullable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708280019414_AddOtherDetailsInMovies.resx">
+      <DependentUpon>201708280019414_AddOtherDetailsInMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
