@@ -24,6 +24,7 @@ namespace Vidly.Models
         public byte MembershipTypeId { get; set; }
 
         // Nullable DateTime is using ?
+        [Display(Name = "Date of Birth")]
         public DateTime? BirthDate { get; set; }
     }
 }
