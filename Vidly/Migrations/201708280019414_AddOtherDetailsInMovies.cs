@@ -16,6 +16,7 @@ namespace Vidly.Migrations
                         Genre = c.String(nullable: false),
                         DateAdded = c.DateTime(nullable: false),
                         StockQuantity = c.Byte(nullable: false),
+                        ReleaseDate = c.DateTime(nullable:false),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -212,11 +212,20 @@
     <Compile Include="Migrations\201708310735044_AddReleaseDateInMovieTable.Designer.cs">
       <DependentUpon>201708310735044_AddReleaseDateInMovieTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708310824196_ChangeTheMovieModelGenreOtherTable.cs" />
+    <Compile Include="Migrations\201708310824196_ChangeTheMovieModelGenreOtherTable.Designer.cs">
+      <DependentUpon>201708310824196_ChangeTheMovieModelGenreOtherTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708310833018_PopulateMovieGenre.cs" />
+    <Compile Include="Migrations\201708310833018_PopulateMovieGenre.Designer.cs">
+      <DependentUpon>201708310833018_PopulateMovieGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieGenre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +327,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708310735044_AddReleaseDateInMovieTable.resx">
       <DependentUpon>201708310735044_AddReleaseDateInMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708310824196_ChangeTheMovieModelGenreOtherTable.resx">
+      <DependentUpon>201708310824196_ChangeTheMovieModelGenreOtherTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708310833018_PopulateMovieGenre.resx">
+      <DependentUpon>201708310833018_PopulateMovieGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
