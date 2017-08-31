@@ -22,5 +22,9 @@ namespace Vidly.Models
 
         [Required]
         public byte StockQuantity { get; set; }
+
+        [Required]
+        public DateTime ReleaseDate { get; set; }
+
     }
 }
