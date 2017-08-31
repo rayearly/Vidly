@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201708310833018_PopulateMovieGenre.Designer.cs">
       <DependentUpon>201708310833018_PopulateMovieGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708310841508_RepopulateCorrectMovieDatabase.cs" />
+    <Compile Include="Migrations\201708310841508_RepopulateCorrectMovieDatabase.Designer.cs">
+      <DependentUpon>201708310841508_RepopulateCorrectMovieDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -333,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708310833018_PopulateMovieGenre.resx">
       <DependentUpon>201708310833018_PopulateMovieGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708310841508_RepopulateCorrectMovieDatabase.resx">
+      <DependentUpon>201708310841508_RepopulateCorrectMovieDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
