@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -27,7 +28,18 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
-            return View();
+            // passing membershipTypes directly to the view can be done but it will not work later when we implement editing a customer. 
+            // Because editing require us to pass customer object to the field.
+            // In this situation, we create a ViewModel that encapsulate the data required in the field
+            var membershipTypes = _context.MembershipTypes.ToList();
+
+            // set the MembershipTypes viewmodel to the list of membership from membership table
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
         }
 
         public ViewResult Index()
