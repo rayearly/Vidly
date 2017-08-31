@@ -224,6 +224,14 @@
     <Compile Include="Migrations\201708310841508_RepopulateCorrectMovieDatabase.Designer.cs">
       <DependentUpon>201708310841508_RepopulateCorrectMovieDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708310906543_AlterStockQuantityDataType.cs" />
+    <Compile Include="Migrations\201708310906543_AlterStockQuantityDataType.Designer.cs">
+      <DependentUpon>201708310906543_AlterStockQuantityDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708310915019_AlterDataTypeForStockQuantityToByte.cs" />
+    <Compile Include="Migrations\201708310915019_AlterDataTypeForStockQuantityToByte.Designer.cs">
+      <DependentUpon>201708310915019_AlterDataTypeForStockQuantityToByte.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -340,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708310841508_RepopulateCorrectMovieDatabase.resx">
       <DependentUpon>201708310841508_RepopulateCorrectMovieDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708310906543_AlterStockQuantityDataType.resx">
+      <DependentUpon>201708310906543_AlterStockQuantityDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708310915019_AlterDataTypeForStockQuantityToByte.resx">
+      <DependentUpon>201708310915019_AlterDataTypeForStockQuantityToByte.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
