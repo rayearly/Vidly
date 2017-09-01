@@ -9,7 +9,7 @@
 
 <!--(Action name, Controller name)-->
 <!--Without using, its just the <form> in the html. But, with using, the Html is a disposible and simply at the end of the block it uses </form>-->
-@using (Html.BeginForm("Create", "Customers"))
+@using (Html.BeginForm("Save", "Customers"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
@@ -29,5 +29,7 @@
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter?
         </label>
     </div>
+    <!--Bring the customer Id together as need to be use to check for customer in Save() class (determine Add or Update)-->
+    @Html.HiddenFor(m => m.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }

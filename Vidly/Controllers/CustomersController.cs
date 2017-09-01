@@ -44,10 +44,27 @@ namespace Vidly.Controllers
 
         //Making sure that it can only be called by HttpPost not HttpGet - Post VS Get (best practices)
         //Put and get rid Breakpoint using F9 and run debug mode with F5, stop debugger SHIFT + F5
+        // Class is used to both ADD and UPDATE customer.
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            _context.Customers.Add(customer);
+            // if Id == 0 means NEW CUSTOMER - ADD!
+            if (customer.Id == 0)
+                _context.Customers.Add(customer);
+            // Otherwise is EXISTING CUSTOMER - UPDATE!
+            else
+            {
+                // Get which customer in database you wanted to update
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                // If you don't want to use this, use AutoMapper! Look into UpdateCustomerDto (only refer to certain attribute of customer!
+                customerInDb.Name = customer.Name;
+                customerInDb.BirthDate = customer.BirthDate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+
+            }
+
             _context.SaveChanges();
 
             // RedirectToAction(Page, Controller);
