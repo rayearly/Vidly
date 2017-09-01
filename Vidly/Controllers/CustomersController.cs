@@ -34,12 +34,12 @@ namespace Vidly.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
 
             // set the MembershipTypes viewmodel to the list of membership from membership table
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
 
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
 
         //Making sure that it can only be called by HttpPost not HttpGet - Post VS Get (best practices)
@@ -76,6 +76,23 @@ namespace Vidly.Controllers
                 return HttpNotFound();
 
             return View(customer);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            // Change the class name by placing the cursor on its name, press F2 and all will change automatically
+            var viewModel = new CustomerFormViewModel()
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
         }
     }
 }

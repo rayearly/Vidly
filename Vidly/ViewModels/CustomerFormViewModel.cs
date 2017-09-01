@@ -7,7 +7,7 @@ using Vidly.Models;
 namespace Vidly.ViewModels
 {
     // ViewModel created to encapsulate all the data required by the field
-    public class NewCustomerViewModel
+    public class CustomerFormViewModel
     {
         // Better use IEnumberable to allow loosley coupled code
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
