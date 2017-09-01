@@ -7,8 +7,8 @@
 }
 <!--Checking the Model by Any method-->
 <h2>Movies</h2>
-
-<button type="button" class="btn btn-primary">@Html.ActionLink("NEW MOVIE", "New", "Movies")</button>
+<!--Creating a Link as Button-->
+@Html.ActionLink("NEW MOVIE", "New", "Movies", null, new { @class = "btn btn-primary" })
 
 @if (!Model.Any())
 {

@@ -26,7 +26,7 @@ namespace Vidly.Models
         [Display (Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
-        [Required]
+        // Get rid of the required attribute here so that it is not a MUST during the ADD/UPDATE data
         public MovieGenre MovieGenre { get; set; }
 
         [Required]
