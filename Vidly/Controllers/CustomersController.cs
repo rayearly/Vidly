@@ -26,6 +26,21 @@ namespace Vidly.Controllers
             _context.Dispose();
         }
 
+        // Display List of customers in Index View
+        public ViewResult Index()
+        {
+            /* 
+               - Get Customers in database, but queried in View (here using razor syntax)
+               - .Include(c => c.MembershipType) is to enable the eager loading. Include the related object.
+               - To use, import System.Data.Entity
+               - Eager loading - loading Customer object together with its related object MembershipType
+            */
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+
+            return View(customers);
+        }
+
+        // Action to create a new customer - with a support of viewModel (combination of mmshiptype + customer) with model binding to Save () class
         public ActionResult New()
         {
             // passing membershipTypes directly to the view can be done but it will not work later when we implement editing a customer. 
@@ -42,9 +57,27 @@ namespace Vidly.Controllers
             return View("CustomerForm", viewModel);
         }
 
-        //Making sure that it can only be called by HttpPost not HttpGet - Post VS Get (best practices)
-        //Put and get rid Breakpoint using F9 and run debug mode with F5, stop debugger SHIFT + F5
+        // Action to edit customer based on Id given through Html.ActionLink 
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            // Change the class name by placing the cursor on its name, press F2 and all will change automatically
+            var viewModel = new CustomerFormViewModel()
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+
         // Class is used to both ADD and UPDATE customer.
+        // Making sure that it can only be called by HttpPost not HttpGet - Post VS Get (best practices)
+        // Put and get rid Breakpoint using F9 and run debug mode with F5, stop debugger SHIFT + F5
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
@@ -71,19 +104,6 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Customers");
         }
 
-        public ViewResult Index()
-        {
-            /* 
-               - Get Customers in database, but queried in View (here using razor syntax)
-               - .Include(c => c.MembershipType) is to enable the eager loading. Include the related object.
-               - To use, import System.Data.Entity
-               - Eager loading - loading Customer object together with its related object MembershipType
-            */
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
-        }
-
         public ActionResult Details(int id)
         {
             // Query is immediately executed by singleordefault here.
@@ -93,23 +113,6 @@ namespace Vidly.Controllers
                 return HttpNotFound();
 
             return View(customer);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-
-            if (customer == null)
-                return HttpNotFound();
-
-            // Change the class name by placing the cursor on its name, press F2 and all will change automatically
-            var viewModel = new CustomerFormViewModel()
-            {
-                Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList()
-            };
-
-            return View("CustomerForm", viewModel);
         }
     }
 }
