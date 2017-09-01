@@ -15,12 +15,15 @@ namespace Vidly.Models
         public string Name { get; set; }
 
         [Required]
+        [Display (Name = "Date Added")]
         public DateTime DateAdded { get; set; }
 
         [Required]
+        [Display (Name = "Number in Stock")]
         public byte StockQuantity { get; set; }
 
         [Required]
+        [Display (Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
 
         [Required]

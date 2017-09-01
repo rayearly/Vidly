@@ -98,6 +98,7 @@ namespace Vidly.Controllers
 
             }
 
+            // Persist the changes in Database
             _context.SaveChanges();
 
             // RedirectToAction(Page, Controller);
