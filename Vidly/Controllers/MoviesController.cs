@@ -6,6 +6,7 @@ using System.Web.Configuration;
 using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using Vidly.ViewModels;
 
 namespace Vidly.Controllers
@@ -48,8 +49,26 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
+        // Redirect to Edit page based on id given
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                MovieGenres = _context.MovieGenres.ToList()
+            };
+
+            return View ("MovieForm", viewModel);
+        }
+
         // Use class to both ADD NEW CUSTOMER & UPDATE CUSTOMER
         // Only use customer class so no membershiptype class passed here
+        [HttpPost]
         public ActionResult Save(Movie movie)
         {
             // If new customer
@@ -57,7 +76,7 @@ namespace Vidly.Controllers
                 _context.Movies.Add(movie);
             else
             {
-                var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
 
                 movieInDb.Name = movie.Name;
                 movieInDb.DateAdded = movie.DateAdded;
@@ -66,7 +85,16 @@ namespace Vidly.Controllers
                 movieInDb.StockQuantity = movie.StockQuantity;
             }
 
-            _context.SaveChanges();
+            // Implement try catch to check for validation problem
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                // Put breakpoint here to see what is the error in validation
+                Console.WriteLine(e);    
+            }
 
             return RedirectToAction("Index", "Movies");
         }
@@ -81,6 +109,7 @@ namespace Vidly.Controllers
 
             return View(movie);
         }
-       
+
+        
     }
 }
