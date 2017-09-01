@@ -43,11 +43,15 @@ namespace Vidly.Controllers
         }
 
         //Making sure that it can only be called by HttpPost not HttpGet - Post VS Get (best practices)
-        //Put Breakpoint using F9 and run debug mode with F5, stop debugger SHIFT + F5
+        //Put and get rid Breakpoint using F9 and run debug mode with F5, stop debugger SHIFT + F5
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
-            return View();
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            // RedirectToAction(Page, Controller);
+            return RedirectToAction("Index", "Customers");
         }
 
         public ViewResult Index()
