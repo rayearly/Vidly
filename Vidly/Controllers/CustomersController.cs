@@ -42,6 +42,14 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        //Making sure that it can only be called by HttpPost not HttpGet - Post VS Get (best practices)
+        //Put Breakpoint using F9 and run debug mode with F5, stop debugger SHIFT + F5
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            return View();
+        }
+
         public ViewResult Index()
         {
             /* 
