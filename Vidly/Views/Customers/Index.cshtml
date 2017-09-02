@@ -4,6 +4,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Customers</h2>
+
+<!--New Customer Link in button type-->
+@Html.ActionLink("NEW CUSTOMER", "New", "Customers", null, new { @class = "btn btn-primary" })
+
 <!--Checking whether there is any customer or not based on the model.-->
 @if (!Model.Any())
 {

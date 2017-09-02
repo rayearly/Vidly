@@ -5,11 +5,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!--Checking the Model by Any method-->
+
 <h2>Movies</h2>
+
 <!--Creating a Link as Button-->
 @Html.ActionLink("NEW MOVIE", "New", "Movies", null, new { @class = "btn btn-primary" })
 
+<!--Checking the Model by Any method-->
 @if (!Model.Any())
 {
     <p>No movies listed yet!</p>

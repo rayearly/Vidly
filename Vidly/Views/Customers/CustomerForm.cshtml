@@ -1,11 +1,10 @@
 ﻿<!--model directive-->
 @model Vidly.ViewModels.CustomerFormViewModel
 @{
-    ViewBag.Title = "New";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = Model.Title;
 }
 
-<h2>New Customer</h2>
+<h2>@Model.Title</h2>
 
 <!--(Action name, Controller name)-->
 <!--Without using, its just the <form> in the html. But, with using, the Html is a disposible and simply at the end of the block it uses </form>-->
@@ -14,6 +13,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.BirthDate)

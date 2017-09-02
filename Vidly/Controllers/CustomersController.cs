@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
+using Vidly.Migrations;
 using Vidly.ViewModels;
 
 namespace Vidly.Controllers
@@ -81,6 +82,20 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            // Uses Model state property to get access to validation data
+            // If modelstate is not valid, return the same view
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    // Populate the field with the data user has input before
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                
+                return View("CustomerForm", viewModel);
+            }
+
             // if Id == 0 means NEW CUSTOMER - ADD!
             if (customer.Id == 0)
                 _context.Customers.Add(customer);
