@@ -82,6 +82,7 @@ namespace Vidly.Controllers
         // Making sure that it can only be called by HttpPost not HttpGet - Post VS Get (best practices)
         // Put and get rid Breakpoint using F9 and run debug mode with F5, stop debugger SHIFT + F5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             // Uses Model state property to get access to validation data
