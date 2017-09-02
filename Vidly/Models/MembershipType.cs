@@ -23,5 +23,9 @@ namespace Vidly.Models
         [StringLength(255)]
         public string Name { get; set; }
 
+        // Refactoring the magic number by assigning it to an attirbute here. (0 - unassigned, 1 - pay as you go)
+        public static readonly byte Unknown = 0;
+        public static readonly byte PayAsYouGo = 1;
+
     }
 }

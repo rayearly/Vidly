@@ -10,21 +10,23 @@
 <!--Without using, its just the <form> in the html. But, with using, the Html is a disposible and simply at the end of the block it uses </form>-->
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @Html.ValidationSummary()
+    <!--OR Html.ValidtionSummary(true, "Please fix the following error") - use when there are too much error and does not display all but the message instead-->
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new {@class = "form-control"})
         @Html.ValidationMessageFor(m => m.Customer.Name)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.Customer.BirthDate)
         <!--Add the format string to better view the birthdate-->
         @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:d MMM yyyy}", new {@class = "form-control"})
         @Html.ValidationMessageFor(m => m.Customer.BirthDate)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId)
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new {@class = "form-control"})
-        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
     <div class="checkbox">
         <label>
