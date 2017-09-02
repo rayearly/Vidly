@@ -43,6 +43,7 @@ namespace Vidly.Controllers
 
             var viewModel = new MovieFormViewModel
             {
+                Movie = new Movie(),
                 MovieGenres = movieGenres
             };
 
@@ -69,8 +70,22 @@ namespace Vidly.Controllers
         // Use class to both ADD NEW CUSTOMER & UPDATE CUSTOMER
         // Only use customer class so no membershiptype class passed here
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            // Implement Validation - check if valid
+            if (!ModelState.IsValid)
+            {
+                // Create instance for viewmodel to re-display the inputted data by user & redirect them back to Movie form
+                var viewModel = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    MovieGenres = _context.MovieGenres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
             // If new customer
             if (movie.Id == 0)
                 _context.Movies.Add(movie);
