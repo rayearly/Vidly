@@ -37,3 +37,8 @@
     @Html.HiddenFor(m => m.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }
+
+<!-- script is used to enable client side validtion. jqueryval script in AppStart/BundleConfig-->
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
