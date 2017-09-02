@@ -52,6 +52,8 @@ namespace Vidly.Controllers
             // set the MembershipTypes viewmodel to the list of membership from membership table
             var viewModel = new CustomerFormViewModel
             {
+                // Customer = new Customer() is created for validation summary to solve the id field is required problem as new customer will generate 0 as id
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 

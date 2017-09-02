@@ -18,7 +18,9 @@ namespace Vidly.Models
             var customer = (Customer)validationContext.ObjectInstance;
 
             // Check selected membership type (0 - no value || 1 - Pay as you go) - validation is success
-            if (customer.MembershipTypeId == 0 || customer.MembershipTypeId == 1)
+            // But 0 and 1 is a magic number, refactor the magic number as it is understandable
+            if (customer.MembershipTypeId == MembershipType.Unknown 
+                || customer.MembershipTypeId == MembershipType.PayAsYouGo)
                 return ValidationResult.Success;
 
             // Check if birthdate is null
