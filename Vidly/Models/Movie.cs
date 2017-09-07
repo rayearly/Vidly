@@ -8,6 +8,7 @@ namespace Vidly.Models
 {
     public class Movie
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

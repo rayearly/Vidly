@@ -43,7 +43,7 @@ namespace Vidly.Controllers
 
             var viewModel = new MovieFormViewModel
             {
-                Movie = new Movie(),
+                // Get rid of the initialization of new Movie() - to resolve the default value of date and stock quantity
                 MovieGenres = movieGenres
             };
 
@@ -58,9 +58,8 @@ namespace Vidly.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 MovieGenres = _context.MovieGenres.ToList()
             };
 
@@ -77,9 +76,8 @@ namespace Vidly.Controllers
             if (!ModelState.IsValid)
             {
                 // Create instance for viewmodel to re-display the inputted data by user & redirect them back to Movie form
-                var viewModel = new MovieFormViewModel
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movie,
                     MovieGenres = _context.MovieGenres.ToList()
                 };
 
@@ -88,28 +86,23 @@ namespace Vidly.Controllers
 
             // If new customer
             if (movie.Id == 0)
+            {
+                // Movie dateadded is current date
+                movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
+            }
+                
             else
             {
                 var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
 
                 movieInDb.Name = movie.Name;
-                movieInDb.DateAdded = movie.DateAdded;
                 movieInDb.MovieGenreId = movie.MovieGenreId;
                 movieInDb.ReleaseDate = movie.ReleaseDate;
                 movieInDb.StockQuantity = movie.StockQuantity;
             }
 
-            // Implement try catch to check for validation problem
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbEntityValidationException e)
-            {
-                // Put breakpoint here to see what is the error in validation
-                Console.WriteLine(e);    
-            }
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "Movies");
         }

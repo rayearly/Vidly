@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201708310915019_AlterDataTypeForStockQuantityToByte.Designer.cs">
       <DependentUpon>201708310915019_AlterDataTypeForStockQuantityToByte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709070758014_DeleteMoviesTableContent.cs" />
+    <Compile Include="Migrations\201709070758014_DeleteMoviesTableContent.Designer.cs">
+      <DependentUpon>201709070758014_DeleteMoviesTableContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -359,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708310915019_AlterDataTypeForStockQuantityToByte.resx">
       <DependentUpon>201708310915019_AlterDataTypeForStockQuantityToByte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709070758014_DeleteMoviesTableContent.resx">
+      <DependentUpon>201709070758014_DeleteMoviesTableContent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
