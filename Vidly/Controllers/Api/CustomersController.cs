@@ -7,6 +7,12 @@ using System.Net.Http;
 using System.Web.Http;
 using Vidly.Models;
 
+/*
+ * You can test the APIs using Tabbed Postman - REST Client extension in chrome. 
+ * Make sure that you set the GET/POST/PUT/DELETE to what which function you want to use in the API. 
+ * In the field that you want to paste the JSON form of data, make sure you select the raw tab, and select JSON as the data convention you wanted to use.
+ * Set the Header = content-type & Value = application/json, so that it can receive data you wanted to create or referring to through the API. 
+ */
 namespace Vidly.Controllers.Api
 {
     public class CustomersController : ApiController
