@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
+using Vidly.Dto;
 using Vidly.Models;
 
 /*
@@ -25,42 +27,50 @@ namespace Vidly.Controllers.Api
         }
 
         // GET /api/customers
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList();
+            // Delegating / Referencing to the Object
+            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
         }
 
         // GET /api/customers/1
-        public Customer GetCustomer(int id)
+        public CustomerDto GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            return customer;
+            
+            // passing the customer variable to the mapped Customer object. 
+            return Mapper.Map<Customer, CustomerDto>(customer);
         }
 
         // POST /api/customers
         // Use httppost Tag to make sure this is the function used when we want to create new customer
         // Returning the object (Customer) themselves in the API
         [HttpPost]
-        public Customer CreateCustomer(Customer customer)
+        public CustomerDto CreateCustomer(CustomerDto customerDto)
         {
             // Check validation is false - throw exception
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            // Map Dto back to the main object (Customer)
+            var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
+
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
-            return customer;
+            // Add Id to the Dto and return it to the client (As the returning CustomerDto will not have Id since it is not included?)
+            customerDto.Id = customer.Id;
+
+            return customerDto;
         }
 
         // PUT /api/customers/1
         // Can return both Customer object or Void, both works.
         [HttpPut]
-        public void UpdateCustomer(int id, Customer customer)
+        public void UpdateCustomer(int id, CustomerDto customerDto)
         { 
             // Check validation is false - throw exception
             if (!ModelState.IsValid)
@@ -73,12 +83,8 @@ namespace Vidly.Controllers.Api
             if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            // Else update in database - can use AutoMapper in the future if there is a lot of attribute
-            customerInDb.Name = customer.Name;
-            customerInDb.BirthDate = customer.BirthDate;
-            customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-            customerInDb.MembershipTypeId = customer.MembershipTypeId;
-
+            Mapper.Map(customerDto, customerInDb);
+            
             _context.SaveChanges();
 
         }
