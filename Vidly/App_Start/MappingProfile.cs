@@ -17,6 +17,11 @@ namespace Vidly.App_Start
             // Create a mapping configuration between two types - Do it vice versa
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<CustomerDto, Customer>();
+
+            // Create a mapping configuration for MoviesDto to Movies object model
+            Mapper.CreateMap<Movie, MovieDto>();
+            Mapper.CreateMap<MovieDto, Movie>();
+
         }
     }
 }

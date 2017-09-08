@@ -62,7 +62,7 @@ namespace Vidly.Controllers.Api
             _context.SaveChanges();
 
             // Add Id to the Dto and return it to the client (As the returning CustomerDto will not have Id since it is not included?)
-            customerDto.Id = customer.Id;
+            //customerDto.Id = customer.Id;
 
             return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
