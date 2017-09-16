@@ -11,43 +11,46 @@
 @Html.ActionLink("NEW CUSTOMER", "New", "Customers", null, new { @class = "btn btn-primary" })
 
 <!--Checking whether there is any customer or not based on the model.-->
-@if (!Model.Any())
-{
-    <p>There is no customers registered yet!</p>
-}
-else
-{
-    <table id="customers" class="table table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>Customers</th>
-            <th>Membership Type</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach (var customer in Model)
-            {
-                <tr>    
-                    <!--Creating a link redirecting to page Details with Id given in the customer details in the controller-->
-                    <!--If you want to create the Edit class automatically, place the cursor on Edit, press ALT + Enter, and Enter again-->
-                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new {id = customer.Id}, null)</td>
-                    <!--Eager Loading in CustomerController to include MembershipType object together. Adding % just like that as razor is good
-                        enough to understand it is just a text-->
-                    <td>@customer.MembershipType.Name</td>
-                    <td>
-                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Customers</th>
+        <th>Membership Type</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+            
+    </tbody>
+</table>
+
 @section scripts
 {
     <script>
         $(document).ready(function() {
-            $("#customers").DataTable();
+            $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
 
             $("#customers").on("click", ".js-delete", function () {
                     var button = $(this);

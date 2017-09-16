@@ -36,9 +36,7 @@ namespace Vidly.Controllers
                - To use, import System.Data.Entity
                - Eager loading - loading Customer object together with its related object MembershipType
             */
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
+            return View(); // remove list of customer since it is gotten from API
         }
 
         // Action to create a new customer - with a support of viewModel (combination of mmshiptype + customer) with model binding to Save () class
