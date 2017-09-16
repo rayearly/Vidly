@@ -21,9 +21,8 @@ The Navigation Bar is here but taken to a new View called _NavBar as a Partial V
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+<!--Third party library lib-->
+    @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false) <!--This allow us to add script section in our view (form). Script will be rendered here-->
 </body>
 </html>
