@@ -22,6 +22,9 @@ namespace Vidly.Dto
 
         public byte MembershipTypeId { get; set; }
 
+        // Set here because want to display membership type using API - but build new Dto for this object
+        public MembershipTypeDto MembershipType { get; set;}
+
         //[Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
     }

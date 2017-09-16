@@ -8,6 +8,7 @@ using System.Data.Entity;
 using Vidly.Migrations;
 using Vidly.ViewModels;
 
+
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
