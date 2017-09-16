@@ -31,9 +31,7 @@ namespace Vidly.Controllers
         // .ToList is a query listing out the movies we have in database.
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(c => c.MovieGenre).ToList();
-
-            return View(movies);
+            return View();
         }
 
         // Redirect to New Customer form but pass the Movie Genre to display it in the genre selection

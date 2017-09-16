@@ -28,5 +28,8 @@ namespace Vidly.Dto
 
         [Required]
         public byte MovieGenreId { get; set; }
+
+        public MovieGenreDto MovieGenre { get; set; }
+
     }
 }

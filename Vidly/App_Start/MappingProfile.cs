@@ -28,6 +28,9 @@ namespace Vidly.App_Start
             // Create a mapping configuration for MembershipType
             Mapper.CreateMap<MembershipType, MembershipTypeDto>(); // domain to Dto
 
+            // Create a mapping configuration for MovieGenre
+            Mapper.CreateMap<MovieGenre, MovieGenreDto>();
+
         }
     }
 }
